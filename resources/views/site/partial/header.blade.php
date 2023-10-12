@@ -16,11 +16,7 @@
                             <a class="getstarted scrollto " href="{{route('register')}}">Registers</a>
                         @endguest
                         @auth
-                            <a href="#">{{auth()->user()->last_name}}</a>&nbsp;|&nbsp;
-                            <a href="javascript:;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                        <a href="{{ route('profile') }}"> My Account </a>
                         @endauth
                     </ul>
                 </div>

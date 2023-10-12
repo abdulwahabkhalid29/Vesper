@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin-scaffold')
 @push('title')
-Home
+Dashboard
 @endpush
 @section('content')
 <div class="layout-page">

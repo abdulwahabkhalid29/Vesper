@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,12 @@ Auth::routes();
 Route::get('/',[FrontendController::class ,'index'])->name('index');
 Route::get('author',[FrontendController::class,'author'])->name('author');
 Route::get('readrer',[FrontendController::class,'reader'])->name('reader');
+
+
+Route::middleware(['auth'])->group(function () {
+    //Profile Update
+    Route::get('profile' , [ProfileController::class , 'profile'])->name('profile');
+    Route::post('profile/update/' , [ProfileController::class , 'update'])->name('profile-update');
+    Route::post('password/update/' , [ProfileController::class , 'passwordupdate'])->name('password-update');
+});
+

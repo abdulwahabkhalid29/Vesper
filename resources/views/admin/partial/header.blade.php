@@ -1,12 +1,4 @@
-@extends('admin.layouts.admin-scaffold')
-@push('styles')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-    a{
-        text-decoration: none;
-    }
-</style>
-@endpush
+
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
       <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -37,7 +29,7 @@
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
           <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
             <div class="avatar avatar-online">
-              <img src="{{ asset('admin/assets/img/avatars/14.png') }}" alt="" class="h-auto rounded-circle">
+              <img src="{{ asset('admin/assets/img/avatars/avatar.jpg') }}" alt="" class="h-auto rounded-circle">
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -46,13 +38,16 @@
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar avatar-online">
-                      <img src="{{ asset('admin/assets/img/avatars/14.png') }}" alt="" class="h-auto rounded-circle">
+                      <img src="{{ asset('admin/assets/img/avatars/avatar.jpg') }}" alt="" class="h-auto rounded-circle">
                     </div>
                   </div>
-                  <div class="flex-grow-1">
-                    <span class="fw-semibold d-block">John Doe</span>
-                    <small class="text-muted">Admin</small>
-                  </div>
+                    @forelse ($admins as $admin)
+                    <div class="flex-grow-1">
+                        <span class="fw-semibold d-block">{{$admin->name}}</span>
+                        <small class="text-muted">{{$admin->email}}</small>
+                    </div>
+                    @empty
+                    @endforelse
                 </div>
               </a>
             </li>
@@ -60,67 +55,11 @@
               <div class="dropdown-divider"></div>
             </li>
             <li>
-                {{-- <a class="dropdown-item" >
-                   <i class="fa fa-user"></i>
-                   <span class="align-middle" data-toggle="modal" data-target="#myModal">Profile</span>
+                <a class="dropdown-item" href="javascript:;">
+                    <i class="fa fa-user"></i>
+                    <span class="align-middle" data-toggle="modal" data-target="#myModal">Profile View</span>
                 </a>
-                <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Modal Heading</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                          Modal body..
-                        </div>
-
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div> --}}
-                  <div class="container">
-                    <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                      Open modal
-                    </button>
-
-                    <!-- The Modal -->
-                    <div class="modal" id="myModal">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-
-                          <!-- Modal Header -->
-                          <div class="modal-header">
-                            <h4 class="modal-title">Modal Heading</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          </div>
-
-                          <!-- Modal body -->
-                          <div class="modal-body">
-                            Modal body..
-                          </div>
-
-                          <!-- Modal footer -->
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          </div>
-
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-             </li>
+            </li>
                <li>
                   <a class="dropdown-item" href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                      <i class="fa fa-power-off"></i>
@@ -141,3 +80,47 @@
     <i class="ti ti-x ti-sm fa fa-search cursor-pointer"></i>
     </div>
 </nav>
+{{-- Modal --}}
+  <!-- Button to Open the Modal -->
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+                <img src="{{ asset('admin/assets/img/avatars/avatar.jpg') }}" height="100%" width="100%" alt="">
+            </div>
+            @forelse ($admins as $admin)
+            <div class="col-md-6">
+                <p style="height:30px; font-size:30px;">{{$admin->name}}</p>
+                <h4 style="height:20px; font-size:20px;">{{$admin->email}}</h4>
+                    <div class="p-4 mt-2 d-flex justify-content-between rounded text-white stats" style="background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);                    ">
+                        <div class="d-flex flex-column">
+                            <span class="articles">Articles</span>
+                            <span class="number1">38</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="followers">Followers</span>
+                            <span class="number2">980</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="rating">Rating</span>
+                            <span class="number3">8.9</span>
+                        </div>
+                    </div><br>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Edit</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                    @empty
+            @endforelse
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
