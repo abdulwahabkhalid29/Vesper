@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Models\Reader;
-use App\Model\User;
+use App\Models\User;
 
 class FrontendController extends Controller
 {

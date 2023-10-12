@@ -75,9 +75,9 @@ Register
                         <div class="form-group mt-4">
                             <input id="confirm-password" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password"required autocomplete="new-password">
                         </div>
-                        <div class="login_submit">
-                            <label for="remember">
-                            <input id="remember" type="checkbox">Show Password</label><br><br>
+                        <div class="mt-3">
+                            <input type="checkbox" onclick="MyFunction()">
+                                Show Password
                         </div>
                             <button class="btn btn-primary mt-4" type="submit">Send Message</button>
                     </form>
@@ -121,9 +121,9 @@ Register
                         <div class="form-group mt-4">
                             <input id="confirm-password" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password"required autocomplete="new-password">
                         </div>
-                        <div class="login_submit">
-                            <label for="remember">
-                            <input id="remember" type="checkbox">Show Password</label><br><br>
+                        <div class="mt-3">
+                            <input type="checkbox" onclick="MyFunction()">
+                                Show Password
                         </div>
                             <button class="btn btn-primary mt-4" type="submit">Send Message</button>
                     </form>
@@ -135,6 +135,16 @@ Register
 
 @endsection
 @push('script')
-
+<script>
+        function MyFunction(){
+         var show = document.getElementById('password');
+         if(show.type == 'password'){
+             show.type = 'text';
+         }
+         else{
+             show.type = 'password';
+         }
+     }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 @endpush
